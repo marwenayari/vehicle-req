@@ -77,7 +77,7 @@ const Home = () => {
               className="text-slate-600 amiri w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300 mb-2 text-right"
             />
             <div className="grid grid-cols-2 gap-2">
-              {filteredVehicles.map((v: any) => (
+              {filteredVehicles.map((v) => (
                 <button
                   key={v.vehiclePlateNumber}
                   onClick={() =>
