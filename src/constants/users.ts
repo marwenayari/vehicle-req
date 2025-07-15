@@ -1,0 +1,38 @@
+export const USERS = [
+  {
+    name: "نوال الكبكبي",
+    birthDay: "01/01/1985",
+    nationalId: "1012345678",
+    department: "الموارد البشرية",
+    benifAdministration: "الادارة العامة للموارد",
+    AdministrationDirector: "سعيد القحطاني",
+    userPhone: "0501234567",
+  },
+  {
+    name: "سارة الزهراني",
+    birthDay: "12/03/1992",
+    nationalId: "1023456789",
+    department: "تقنية المعلومات",
+    benifAdministration: "الادارة العامة للمستفيدين",
+    AdministrationDirector: "محمد علي ابراهيم",
+    userPhone: "058764411",
+  },
+  {
+    name: "خالد المطيري",
+    birthDay: "05/07/1988",
+    nationalId: "1034567890",
+    department: "الشؤون المالية",
+    benifAdministration: "الادارة العامة للمالية",
+    AdministrationDirector: "عبدالله السالم",
+    userPhone: "0559876543",
+  },
+  {
+    name: "ريم السبيعي",
+    birthDay: "22/09/1995",
+    nationalId: "1045678901",
+    department: "العلاقات العامة",
+    benifAdministration: "الادارة العامة للعلاقات",
+    AdministrationDirector: "نورة العتيبي",
+    userPhone: "0534567890",
+  },
+];

@@ -1,0 +1,38 @@
+export const VEHICLES = [
+  {
+    vehiclePlateNumber: "أ ب ج-١٢٣٤",
+    vehicleType: "سيارة",
+    vehicleBrand: "تويوتا كامري",
+    vehicleModel: "كامري 2020",
+    vehicleColor: "أبيض",
+    chassisNumber: "JH4KA8260MC000001",
+    km: "١٠٠٠٠",
+  },
+  {
+    vehiclePlateNumber: "د هـ و-٥٦٧٨",
+    vehicleType: "سيارة",
+    vehicleBrand: "هيونداي سوناتا",
+    vehicleModel: "سوناتا 2021",
+    vehicleColor: "أسود",
+    chassisNumber: "1HGCM82633A123456",
+    km: "٢٠٠٠٠",
+  },
+  {
+    vehiclePlateNumber: "ز ح ط-٩٨٧٦",
+    vehicleType: "سيارة",
+    vehicleBrand: "كيا سبورتاج",
+    vehicleModel: "سبورتاج 2019",
+    vehicleColor: "فضي",
+    chassisNumber: "2T1BURHE5JC123456",
+    km: "٣٠٠٠٠",
+  },
+  {
+    vehiclePlateNumber: "ل م ن-٤٣٢١",
+    vehicleType: "سيارة",
+    vehicleBrand: "نيسان التيما",
+    vehicleModel: "التيما 2018",
+    vehicleColor: "أزرق",
+    chassisNumber: "3N1AB7AP4KY123456",
+    km: "٤٠٠٠٠",
+  },
+];

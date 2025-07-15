@@ -1,26 +1,35 @@
-export const DUMMY_FORM_DATA = {
-  date: "13   07   2025",
-  duration: "1",
-  hours: "8",
-  city: "الرياض",
-  name: "أحمد محمد سعيد",
-  birthDay: "01/05/1990",
-  nationalId: "1023456789",
-  department: "تقنية المعلومات",
-  benifAdministration: "الادارة العامة للمستفيدين",
-  AdministrationDirector: "محمد علي ابراهيم",
-  userPhone: "058764411",
-  vehiclePlateNumber: "1234-مكة",
-  vehicleType: "سيارة",
-  vehicleBrand: "تويوتا كامري",
-  vehicleModel: "كامري 2020",
-  vehicleColor: "أبيض",
-  // رقم الهيكل
-  chassisNumber: "1HGBH41JXMN109186",
-  km: "1  0  5  0  0  0",
-  check: "✓",
-  reason: "طلب اجازة",
-};
+import { USERS } from "./users";
+import { VEHICLES } from "./vehicles";
+
+export function getFormData(
+  selectedUserIdx: number,
+  selectedVehicleIdx: number
+) {
+  const user = USERS[selectedUserIdx];
+  const vehicle = VEHICLES[selectedVehicleIdx];
+  return {
+    date: "13   07   2025",
+    duration: "1",
+    hours: "8",
+    city: "الرياض",
+    name: user.name,
+    birthDay: user.birthDay,
+    nationalId: user.nationalId,
+    department: user.department,
+    benifAdministration: user.benifAdministration,
+    AdministrationDirector: user.AdministrationDirector,
+    userPhone: user.userPhone,
+    vehiclePlateNumber: vehicle.vehiclePlateNumber,
+    vehicleType: vehicle.vehicleType,
+    vehicleBrand: vehicle.vehicleBrand,
+    vehicleModel: vehicle.vehicleModel,
+    vehicleColor: vehicle.vehicleColor,
+    chassisNumber: vehicle.chassisNumber,
+    km: vehicle.km,
+    check: "✓",
+    reason: "طلب اجازة",
+  };
+}
 
 export const checkMarkCoordinates = [
   { x: 166, y: 483 },
