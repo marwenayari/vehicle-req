@@ -3,7 +3,7 @@ import { PDFDocument } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
 import path from "path";
 import fs from "fs/promises";
-import { DUMMY_FORM_DATA } from "@/constants/formData";
+import { DUMMY_FORM_DATA, checkMarkCoordinates } from "@/constants/formData";
 import reshaper from "arabic-persian-reshaper";
 
 function shapeArabic(text: string) {
@@ -21,17 +21,26 @@ export async function GET() {
       "amiri",
       "Amiri-Bold.ttf"
     );
+    const notoFontPath = path.join(
+      process.cwd(),
+      "public",
+      "fonts",
+      "noto",
+      "NotoSansSymbols2-Regular.ttf"
+    );
 
     // Read files from disk
-    const [existingPdfBytes, fontBytes] = await Promise.all([
+    const [existingPdfBytes, fontBytes, notoFontBytes] = await Promise.all([
       fs.readFile(templatePath),
       fs.readFile(fontPath),
+      fs.readFile(notoFontPath),
     ]);
 
     // Load PDF and register fontkit
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
     pdfDoc.registerFontkit(fontkit);
     const customFont = await pdfDoc.embedFont(fontBytes);
+    const notoFont = await pdfDoc.embedFont(notoFontBytes);
     const page = pdfDoc.getPage(0);
 
     // Draw Arabic text fields
@@ -41,9 +50,39 @@ export async function GET() {
       size: 14,
       font: customFont,
     });
+    page.drawText(shapeArabic(DUMMY_FORM_DATA.date), {
+      x: 420,
+      y: 695,
+      size: 14,
+      font: customFont,
+    });
+    page.drawText(shapeArabic(DUMMY_FORM_DATA.duration), {
+      x: 290,
+      y: 695,
+      size: 14,
+      font: customFont,
+    });
+    page.drawText(shapeArabic(DUMMY_FORM_DATA.hours), {
+      x: 212,
+      y: 696,
+      size: 14,
+      font: customFont,
+    });
+    page.drawText(shapeArabic(DUMMY_FORM_DATA.city), {
+      x: 100,
+      y: 698,
+      size: 14,
+      font: customFont,
+    });
     page.drawText(shapeArabic(DUMMY_FORM_DATA.name), {
       x: 395,
       y: 650,
+      size: 14,
+      font: customFont,
+    });
+    page.drawText(shapeArabic(DUMMY_FORM_DATA.birthDay), {
+      x: 62,
+      y: 652,
       size: 14,
       font: customFont,
     });
@@ -71,13 +110,58 @@ export async function GET() {
       size: 14,
       font: customFont,
     });
-    page.drawText(shapeArabic(DUMMY_FORM_DATA.phone), {
-      x: 110,
-      y: 500,
-      size: 14,
+    page.drawText(shapeArabic(DUMMY_FORM_DATA.vehiclePlateNumber), {
+      x: 500,
+      y: 540,
+      size: 12,
+      font: customFont,
+    });
+    page.drawText(shapeArabic(DUMMY_FORM_DATA.vehicleType), {
+      x: 430,
+      y: 543,
+      size: 12,
+      font: customFont,
+    });
+    page.drawText(shapeArabic(DUMMY_FORM_DATA.vehicleBrand), {
+      x: 345,
+      y: 543,
+      size: 12,
+      font: customFont,
+    });
+    page.drawText(shapeArabic(DUMMY_FORM_DATA.vehicleColor), {
+      x: 290,
+      y: 543,
+      size: 12,
+      font: customFont,
+    });
+    page.drawText(shapeArabic(DUMMY_FORM_DATA.vehicleModel), {
+      x: 205,
+      y: 543,
+      size: 12,
+      font: customFont,
+    });
+    page.drawText(shapeArabic(DUMMY_FORM_DATA.chassisNumber), {
+      x: 65,
+      y: 543,
+      size: 12,
       font: customFont,
     });
 
+    page.drawText(shapeArabic(DUMMY_FORM_DATA.km), {
+      x: 65,
+      y: 500,
+      size: 16,
+      font: customFont,
+    });
+
+    checkMarkCoordinates.forEach((coord) => {
+      page.drawText("✓", {
+        x: coord.x,
+        y: coord.y,
+        size: 16,
+        font: notoFont,
+      });
+    });
     const pdfBytes = await pdfDoc.save();
 
     // Save the PDF to /public/generate.pdf
