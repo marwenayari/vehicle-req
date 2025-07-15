@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { saveAs } from "file-saver";
+// @TODO use later
+// import { saveAs } from "file-saver";
 import Head from "next/head";
 import { USERS } from "@/constants/users";
 import { VEHICLES } from "@/constants/vehicles";
-import { getFormData } from "@/constants/formData";
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
@@ -41,6 +41,7 @@ const Home = () => {
       setPdfUrl(data.url);
     } catch (err) {
       alert("PDF generation failed");
+      console.error("Error generating PDF:", err);
     }
     setLoading(false);
   };
@@ -76,7 +77,7 @@ const Home = () => {
               className="text-slate-600 amiri w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300 mb-2 text-right"
             />
             <div className="grid grid-cols-2 gap-2">
-              {filteredVehicles.map((v: any, idx: number) => (
+              {filteredVehicles.map((v: any) => (
                 <button
                   key={v.vehiclePlateNumber}
                   onClick={() =>
@@ -105,7 +106,7 @@ const Home = () => {
               className="text-slate-600 amiri w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300 mb-2 text-right"
             />
             <div className="grid grid-cols-2 gap-2">
-              {filteredUsers.map((u: any, idx: number) => (
+              {filteredUsers.map((u) => (
                 <button
                   key={u.nationalId}
                   onClick={() => setSelectedUser(USERS.indexOf(u).toString())}

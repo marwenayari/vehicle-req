@@ -1,9 +1,26 @@
 {
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
   "extends": [
+    "next",
     "next/core-web-vitals",
+    "eslint:recommended",
     "plugin:tailwindcss/recommended"
   ],
   "plugins": [
+    "@typescript-eslint",
+    "react",
     "tailwindcss"
-  ]
+  ],
+  "rules": {
+    "no-console": "off",
+    "no-unused-vars": "warn",
+    "no-debugger": "warn",
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/react-in-jsx-scope": "off"
+  }
 }
