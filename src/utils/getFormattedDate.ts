@@ -5,7 +5,16 @@ import "moment/locale/ar";
 // export type DateType = "miladi" | "hijri";
 
 export function getFormattedDate() {
-  const todayMiladiArabic = moment().locale("ar").format("DD   MM   YYYY");
-  console.log("Formatted Miladi Date:", todayMiladiArabic);
-  return todayMiladiArabic;
+  const m = moment().locale("ar");
+  // Get day, month, year as strings in Arabic numerals
+  const day = m.format("DD");
+  const month = m.format("MM");
+  const year = m.format("YYYY");
+  // Reverse each string
+  const reverse = (s: string) => s.split("").reverse().join("");
+  const dayRev = reverse(day);
+  const monthRev = reverse(month);
+  const yearRev = reverse(year);
+  // Join with 4 spaces
+  return `${dayRev}  ${monthRev}  ${yearRev}`;
 }
