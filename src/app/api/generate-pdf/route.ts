@@ -103,6 +103,16 @@ export async function POST(req: NextRequest) {
       size: 14,
       font: customFont,
     });
+    // Embed sign.png image (same as GET)
+    const signImagePath = path.join(process.cwd(), "public", "sign.png");
+    const signImageBytes = await fs.readFile(signImagePath);
+    const signImage = await pdfDoc.embedPng(signImageBytes);
+    page.drawImage(signImage, {
+      x: 300, 
+      y: 200,
+      width: 50,
+      height: 30,
+    });
     page.drawText(shapeArabic(formData.AdministrationDirector), {
       x: 220,
       y: 628,
@@ -289,6 +299,18 @@ export async function GET() {
       y: 627,
       size: 14,
       font: customFont,
+    });
+    // add sign image here
+    // Embed sign.png image
+    const signImagePath = path.join(process.cwd(), "public", "sign.png");
+    const signImageBytes = await fs.readFile(signImagePath);
+    const signImage = await pdfDoc.embedPng(signImageBytes);
+    console.log("signImage", signImage)
+    page.drawImage(signImage, {
+      x: 381, // random x
+      y: 627, // random y
+      width: 80, // adjust as needed
+      height: 40, // adjust as needed
     });
     page.drawText(shapeArabic(formData.AdministrationDirector), {
       x: 220,
