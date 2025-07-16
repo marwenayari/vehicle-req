@@ -36,9 +36,18 @@ const Home = () => {
           selectedUserIdx: Number(selectedUser),
         }),
       });
-      if (!res.ok) throw new Error("Failed to generate PDF");
-      const data = await res.json();
-      setPdfUrl(data.url);
+      if (!res.ok) {
+        // Try to parse error JSON if available
+        let errorMsg = "Failed to generate PDF";
+        try {
+          const errorData = await res.json();
+          errorMsg = errorData.error || errorMsg;
+        } catch {}
+        throw new Error(errorMsg);
+      }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      setPdfUrl(url);
     } catch (err) {
       alert("PDF generation failed");
       console.error("Error generating PDF:", err);
