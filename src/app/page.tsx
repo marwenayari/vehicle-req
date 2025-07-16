@@ -3,7 +3,7 @@
 import { useState } from "react";
 // @TODO use later
 // import { saveAs } from "file-saver";
-import Head from "next/head";
+import Image from "next/image";
 import { USERS } from "@/constants/users";
 import { VEHICLES } from "@/constants/vehicles";
 
@@ -57,21 +57,23 @@ const Home = () => {
 
   return (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@700&display=swap"
-        />
-        <style>{`
-          .amiri { font-family: Cairo, serif; }
-        `}</style>
-      </Head>
       <main
         className="min-h-screen bg-teal-50 flex flex-col items-center px-2 py-4 md:px-0"
         dir="rtl"
       >
-        <h1 className="amiri text-xl md:text-2xl font-bold text-teal-800 mb-4 text-center">
-          طلب مركبة لأداء مهمة رسمية
+        <h1 className="amiri text-md md:text-2xl font-bold text-teal-800 mb-4 text-center flex justify-between items-center w-full max-w-md ">
+          <Image
+            className="fit-cover mr-[-10px]"
+            width={200}
+            height={6}
+            src="/NCEC.png"
+            alt="logo"
+          ></Image>
+          <div>
+            {" "}
+            <span className="block">طــــلب مـــــــركـبـة</span>
+            <span className="block">لأداء مهمة رسمية</span>
+          </div>
         </h1>
         <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-4 flex flex-col gap-6">
           <div>
