@@ -169,15 +169,21 @@ export async function POST(req: NextRequest) {
     });
     const pdfBytes = await pdfDoc.save();
 
-    // Save the PDF to /public/generate.pdf
-    const outputPath = path.join(process.cwd(), "public", "generate.pdf");
-    await fs.writeFile(outputPath, pdfBytes);
-
-    // Return the URL to the generated PDF
-    return NextResponse.json({ url: "/generate.pdf" });
+    // Return the PDF directly in the response
+    return new NextResponse(pdfBytes, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": "attachment; filename=generate.pdf"
+      }
+    });
   } catch (error) {
     console.error("PDF generation error:", error);
-    return new NextResponse("PDF generation failed", { status: 500 });
+    // Return the error message in the response for easier debugging
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : String(error) },
+      { status: 500 }
+    );
   }
 }
 import { NextRequest, NextResponse } from "next/server";
@@ -350,14 +356,20 @@ export async function GET() {
     });
     const pdfBytes = await pdfDoc.save();
 
-    // Save the PDF to /public/generate.pdf
-    const outputPath = path.join(process.cwd(), "public", "generate.pdf");
-    await fs.writeFile(outputPath, pdfBytes);
-
-    // Return the URL to the generated PDF
-    return NextResponse.json({ url: "/generate.pdf" });
+    // Return the PDF directly in the response
+    return new NextResponse(pdfBytes, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": "attachment; filename=generate.pdf"
+      }
+    });
   } catch (error) {
     console.error("PDF generation error:", error);
-    return new NextResponse("PDF generation failed", { status: 500 });
+    // Return the error message in the response for easier debugging
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : String(error) },
+      { status: 500 }
+    );
   }
 }
